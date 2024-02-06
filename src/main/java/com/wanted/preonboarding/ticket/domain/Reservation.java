@@ -40,4 +40,42 @@ public class Reservation {
 
     @Column(nullable = false)
     private int seat;
+
+    public Reservation(
+            final Performance performance,
+            final String name,
+            final String phoneNumber,
+            final int round,
+            final int gate,
+            final String line,
+            final int seat
+    ) {
+        this.performance = performance;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.round = round;
+        this.gate = gate;
+        this.line = line;
+        this.seat = seat;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public int getRound() {
+        return round;
+    }
+
+    public String getLine() {
+        return line;
+    }
+
+    public int getSeat() {
+        return seat;
+    }
 }

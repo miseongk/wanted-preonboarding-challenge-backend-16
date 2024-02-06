@@ -8,6 +8,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 import lombok.AccessLevel;
@@ -43,4 +44,16 @@ public class Performance {
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
     private ReserveStatus isReserve = ReserveStatus.DISABLE;
+
+    public boolean canPay(final BigDecimal balance) {
+        return balance.compareTo(BigDecimal.valueOf(price)) >= 1;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

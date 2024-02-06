@@ -1,5 +1,6 @@
 package com.wanted.preonboarding.ticket.domain;
 
+import com.wanted.preonboarding.core.exception.PreonboardingException;
 import com.wanted.preonboarding.ticket.domain.vo.ReserveStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -41,4 +42,27 @@ public class PerformanceSeatInfo {
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
     private ReserveStatus isReserve = ReserveStatus.ENABLE;
+
+    public void reserve() {
+        if (isReserve == ReserveStatus.DISABLE) {
+            throw new PreonboardingException("이미 예약된 좌석입니다.");
+        }
+        this.isReserve = ReserveStatus.DISABLE;
+    }
+
+    public int getRound() {
+        return round;
+    }
+
+    public int getGate() {
+        return gate;
+    }
+
+    public String getLine() {
+        return line;
+    }
+
+    public int getSeat() {
+        return seat;
+    }
 }
